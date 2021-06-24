@@ -1,22 +1,25 @@
 package com.expandable.recyclerview.ui.activity
 
+import android.content.Intent
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
 import com.expandable.recyclerview.R
 import com.expandable.recyclerview.base.BaseCompactActivity
 import com.expandable.recyclerview.databinding.ActivityMainBinding
 import com.expandable.recyclerview.model.ChildDataModel
 import com.expandable.recyclerview.model.ListDataModel
 import com.expandable.recyclerview.ui.adapter.ListAdapter
-import com.expandable.recyclerview.util.FIVE
+import com.expandable.recyclerview.util.DIRECTOR_NAME
+import com.expandable.recyclerview.util.GENRE
+import com.expandable.recyclerview.util.MOVIE_TITLE
+import com.expandable.recyclerview.util.SIX
 import com.expandable.recyclerview.util.TWENTY
-import com.expandable.recyclerview.util.TWO
 import com.expandable.recyclerview.util.ZERO
 import com.expandable.recyclerview.viewmodel.ActivityMainViewModel
 
-class MainActivity : BaseCompactActivity<ActivityMainBinding, ActivityMainViewModel>(), View.OnClickListener {
+class MainActivity : BaseCompactActivity<ActivityMainBinding, ActivityMainViewModel>(),
+    View.OnClickListener {
 
     private val list = arrayListOf<ListDataModel>()
     private var childListArray = arrayListOf<ArrayList<ChildDataModel>>()
@@ -38,58 +41,43 @@ class MainActivity : BaseCompactActivity<ActivityMainBinding, ActivityMainViewMo
         }
     }
 
-    //Setting dummy data
-    private fun setDummyData() {
-        for (i in ZERO..TWENTY) {
-            if (i % TWO == ZERO) {
-                ListDataModel().apply {
-                    name = "Morning $i"
-                    isExpanded = false
-                    val childList: ArrayList<ChildDataModel> = arrayListOf()
-                    for ( i in ZERO..FIVE) {
-                        if (i % TWO == ZERO) {
-                            val childData = ChildDataModel()
-                            childData.name = "Child Morning $i"
-                            childList.add(childData)
-                        } else {
-                            val childData = ChildDataModel()
-                            childData.name = "Child Evening $i"
-                            childList.add(childData)
-                        }
-                    }
-                    childListArray.add(childList)
-                    list.add(this)
-                }
-            } else {
-                ListDataModel().apply {
-                    name = "Evening $i"
-                    isExpanded = false
-                    val childList: ArrayList<ChildDataModel> = arrayListOf()
-                    for (i in ZERO..FIVE) {
-                        if (i % TWO == ZERO) {
-                            val childData = ChildDataModel()
-                            childData.name = "Child Morning $i"
-                            childList.add(childData)
-                        } else {
-                            val childData = ChildDataModel()
-                            childData.name = "Child Evening $i"
-                            childList.add(childData)
-                        }
-                    }
-                    childListArray.add(childList)
-                    list.add(this)
-                }
-            }
-        }
-    }
-
-    override fun initializeObserver(viewModel : ActivityMainViewModel) {
+    override fun initializeObserver(viewModel: ActivityMainViewModel) {
         super.initializeObserver(viewModel)
-        listAdapter.liveOnClickData.observe(this, Observer {
-            Toast.makeText(applicationContext,it,Toast.LENGTH_SHORT).show()
+        listAdapter.liveOnClickData.observe(this, {
+            Toast.makeText(applicationContext, it, Toast.LENGTH_SHORT).show()
+        })
+
+        listAdapter.clickOnShare.observe(this,{
+            Intent().apply {
+                action = Intent.ACTION_SEND
+                type="text/plain"
+                startActivity(Intent.createChooser(this,getString(R.string.share_to)))
+            }
         })
     }
-    override fun onClick(v : View?) {
+
+    override fun onClick(v: View?) {
         //Implement when need
+    }
+
+    //Setup dummy data
+    private fun setDummyData() {
+        for (i in ZERO..TWENTY) {
+            ListDataModel().apply {
+                val releaseYear = i+2000
+                movieYear = "Movie released in  $releaseYear"
+                isExpanded = false
+                val childList: ArrayList<ChildDataModel> = arrayListOf()
+                for (item in ZERO..SIX) {
+                    val childData = ChildDataModel()
+                    childData.movieTitle = MOVIE_TITLE[item]
+                    childData.director = DIRECTOR_NAME[item]
+                    childData.genre = GENRE[item]
+                    childList.add(childData)
+                }
+                childListArray.add(childList)
+                list.add(this)
+            }
+        }
     }
 }

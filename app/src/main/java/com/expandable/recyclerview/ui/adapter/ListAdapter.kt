@@ -22,29 +22,37 @@ import com.expandable.recyclerview.R
 import com.expandable.recyclerview.base.BaseRecyclerAdapter
 import com.expandable.recyclerview.model.ChildDataModel
 import com.expandable.recyclerview.model.ListDataModel
+import com.expandable.recyclerview.util.DOWNLOADING_START
 
 class ListAdapter : BaseRecyclerAdapter<ListDataModel, ChildDataModel>() {
 
     val liveOnClickData = MutableLiveData<String>()
+    val clickOnShare = MutableLiveData<String>()
 
-    override fun getLayoutIdForType(): Int = R.layout.item_user
+    override fun getLayoutIdForType(): Int = R.layout.item_parent
 
     override fun getLayoutIdForChild(): Int = R.layout.item_child
 
     override fun onParentItemClick(triple : Triple<Int , Any , View>, viewDataBinding : ViewDataBinding) {
         val data = triple.second as ListDataModel
-        liveOnClickData.value = data.name
         when(triple.third.id) {
-            R.id.name -> {
+            R.id.text_movie_year -> {
                 //Call this function where you want to expand collapse childView
                 expandCollapse(triple.first,viewDataBinding)
+            }
+            R.id.img_share -> {
+               clickOnShare.value = data.movieYear
             }
         }
     }
 
     override fun onChildItemClicked(triple : Triple<Int , Any , View>, parentIndex: Int) {
         val data = triple.second as ChildDataModel
-        liveOnClickData.value = data.name+" From "+ arrayList[parentIndex].name
+        when(triple.third.id){
+            R.id.img_download_movie -> {
+                liveOnClickData.value = data.movieTitle+" "+DOWNLOADING_START
+            }
+        }
     }
 }
 
