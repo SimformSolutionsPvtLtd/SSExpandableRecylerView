@@ -16,11 +16,13 @@
 package com.expandable.recyclerview.model
 
 class ListDataModel {
-     var name: String = ""
+     var movieYear: String = ""
      var isExpanded: Boolean = false
      var childArray: ArrayList<ChildDataModel> = arrayListOf()
 }
 
 class ChildDataModel {
-     var name: String = ""
+     var movieTitle: String = ""
+     var director: String = ""
+     var genre: String = ""
 }
