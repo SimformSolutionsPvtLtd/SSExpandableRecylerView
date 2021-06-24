@@ -33,11 +33,11 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_8sdp"
                 android:onClick="@{clickHandler::onClick}"
-                android:textStyle="bold"
+                android:text="@{@string/movie_title(data.movieTitle)}"
                 android:textAppearance="?attr/textAppearanceListItem"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:text="@{@string/movie_title(data.movieTitle)}"
                 tools:text="Movie title" />
 
             <androidx.appcompat.widget.AppCompatImageView
