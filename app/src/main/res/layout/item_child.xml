@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.expandable.recyclerview.model.ChildDataModel" />
+
+        <variable
+            name="clickHandler"
+            type="android.view.View.OnClickListener" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/_4sdp"
+        android:layout_margin="@dimen/_4sdp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:background="#f5f9ff"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/movieTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8sdp"
+                android:onClick="@{clickHandler::onClick}"
+                android:text="@{@string/movie_title(data.movieTitle)}"
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Movie title" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_download_movie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8sdp"
+                android:onClick="@{clickHandler::onClick}"
+                android:src="@drawable/ic_baseline_file_download_24"
+                app:layout_constraintTop_toTopOf="@id/movieTitle"
+                app:layout_constraintBottom_toBottomOf="@id/movieTitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginRight="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp" />
+
+            <TextView
+                android:id="@+id/text_director"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8sdp"
+                android:onClick="@{clickHandler::onClick}"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:textAppearance="?attr/textAppearanceListItem"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/movieTitle"
+                android:text="@{@string/director_name(data.director)}"
+                tools:text="Director name" />
+
+            <TextView
+                android:id="@+id/text_genre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8sdp"
+                android:onClick="@{clickHandler::onClick}"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:textAppearance="?attr/textAppearanceListItem"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/text_director"
+                app:layout_constraintTop_toBottomOf="@id/movieTitle"
+                android:text="@{@string/genre(data.genre)}"
+                tools:text="Genre" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

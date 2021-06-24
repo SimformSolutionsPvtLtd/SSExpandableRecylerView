@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.expandable.recyclerview.model.ListDataModel" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="clickHandler"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="adapter"
+            type="com.expandable.recyclerview.base.BaseChildRecyclerAdapter" />
+
+        <variable
+            name="isVisible"
+            type="Boolean" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_4sdp"
+        app:cardCornerRadius="@dimen/_4sdp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_8sdp">
+
+            <TextView
+                android:id="@+id/text_movie_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:paddingBottom="@dimen/_8sdp"
+                android:onClick="@{clickHandler::onClick}"
+                android:text="@{data.movieYear}"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_16ssp"
+                android:textAppearance="?attr/textAppearanceListItem"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Name" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8sdp"
+                android:onClick="@{clickHandler::onClick}"
+                android:src="@drawable/ic_baseline_share_24"
+                app:layout_constraintBottom_toBottomOf="@id/text_movie_year"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/text_movie_year" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/childRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:visibility="@{isVisible ? View.VISIBLE : View.GONE }"
+                app:setAdapter="@{adapter}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_movie_year"
+                tools:listitem="@layout/item_child" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

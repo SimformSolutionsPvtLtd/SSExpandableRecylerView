@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Expandable Recycler</string>
+
+    <string name="downloading_start">Downloading Started…</string>
+    <string name="movie_title">Title: %s</string>
+    <string name="director_name">Director: %s</string>
+    <string name="genre">Genre: %s</string>
+    <string name="share_to">"Share To:"</string>
+
+</resources>
