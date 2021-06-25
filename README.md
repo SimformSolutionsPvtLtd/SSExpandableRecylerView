@@ -14,7 +14,7 @@
 
 | Expandable RecyclerView| Expandable RecyclerView| Expandable RecyclerView|
 |--|--|--|
-| ![me](https://github.com/SimformSolutionsPvtLtd/SSExpandableRecylerView/blob/UNT-T5523_readme_update/Images/1st_sample.gif) | ![](https://github.com/SimformSolutionsPvtLtd/SSExpandableRecylerView/blob/UNT-T5523_readme_update/Images/2nd_sample.gif) | ![](https://github.com/SimformSolutionsPvtLtd/SSExpandableRecylerView/blob/UNT-T5523_readme_update/Images/3rd_sample.gif) |
+| ![me](https://github.com/SimformSolutionsPvtLtd/SSExpandableRecylerView/blob/main/Images/1st_sample.gif) | ![](https://github.com/SimformSolutionsPvtLtd/SSExpandableRecylerView/blob/main/Images/2nd_sample.gif) | ![](https://github.com/SimformSolutionsPvtLtd/SSExpandableRecylerView/blob/main/Images/3rd_sample.gif) |
 
 ## Installation
 1. Extend BaseRecyclerAdapter in recycler adapter and implement below methods.
