@@ -1,5 +1,5 @@
 # SSExpandableRecylerView
-### _Exapandable Recyclerview make it easy to integrate nested recyclerview_
+### _Expandable Recyclerview make it easy to integrate nested recyclerview_
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)][git-repo-url] [![Kotlin Version](https://img.shields.io/badge/Kotlin-v1.5.10-blue.svg)](https://kotlinlang.org) [![Platform](https://img.shields.io/badge/Platform-Android-green.svg?style=flat)](https://www.android.com/) [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
 
