@@ -41,17 +41,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8sdp"
-                android:paddingBottom="@dimen/_8sdp"
-                android:onClick="@{clickHandler::onClick}"
-                android:text="@{data.movieYear}"
                 android:gravity="center"
-                android:textStyle="bold"
+                android:onClick="@{clickHandler::onClick}"
+                android:paddingBottom="@dimen/_8sdp"
+                android:text="@{data.movieYear}"
+                android:textAppearance="?attr/textAppearanceListItem"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/_16ssp"
-                android:textAppearance="?attr/textAppearanceListItem"
+                android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Name" />
+                tools:text="@string/name" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/img_share"
@@ -71,12 +71,12 @@
                 android:layout_marginTop="@dimen/_8sdp"
                 android:layout_marginBottom="@dimen/_8sdp"
                 android:visibility="@{isVisible ? View.VISIBLE : View.GONE }"
-                app:setAdapter="@{adapter}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/text_movie_year"
+                app:setAdapter="@{adapter}"
                 tools:listitem="@layout/item_child" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

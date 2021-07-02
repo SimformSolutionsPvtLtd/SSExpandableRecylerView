@@ -38,7 +38,7 @@ abstract class BaseRecyclerAdapter<ListModel, ChildItemModel>: RecyclerView.Adap
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerHolder {
         val binding: ViewDataBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
-            getLayoutIdForType(),
+            getLayoutIdForParent(),
             parent,
             false
         )
@@ -54,7 +54,7 @@ abstract class BaseRecyclerAdapter<ListModel, ChildItemModel>: RecyclerView.Adap
     /**
      * This is abstract function used to get view type for adapter
      */
-    abstract fun getLayoutIdForType(): Int
+    abstract fun getLayoutIdForParent(): Int
 
     abstract fun getLayoutIdForChild(): Int
 
