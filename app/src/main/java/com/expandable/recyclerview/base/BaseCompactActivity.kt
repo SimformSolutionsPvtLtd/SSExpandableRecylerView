@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.expandable.recyclerview.BR
 
-abstract class BaseCompactActivity<Binding: ViewDataBinding,ViewModel: androidx.lifecycle.ViewModel>: AppCompatActivity() {
+abstract class BaseCompactActivity<Binding : ViewDataBinding, ViewModel : androidx.lifecycle.ViewModel> : AppCompatActivity() {
     protected lateinit var binding: Binding
     protected abstract val viewModel: ViewModel
 
@@ -19,10 +19,10 @@ abstract class BaseCompactActivity<Binding: ViewDataBinding,ViewModel: androidx.
     abstract fun getLayoutResID(): Int
 
     private fun bindViewModel() {
-        binding = DataBindingUtil.setContentView(this,getLayoutResID())
+        binding = DataBindingUtil.setContentView(this, getLayoutResID())
         binding.apply {
             lifecycleOwner = this@BaseCompactActivity
-            setVariable(BR.viewModel,viewModel)
+            setVariable(BR.viewModel, viewModel)
         }
         initialize()
     }

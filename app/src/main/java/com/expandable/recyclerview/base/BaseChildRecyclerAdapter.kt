@@ -27,65 +27,65 @@ import com.expandable.recyclerview.BR
  * Base recycler adapter for all recycler adapters.
  */
 @Suppress("TooManyFunctions")
-class BaseChildRecyclerAdapter<ChildItemModel> (private val clickListener: OnChildItemClickListener) :
-    RecyclerView.Adapter<BaseChildRecyclerAdapter<ChildItemModel>.RecyclerHolder>() {
+class BaseChildRecyclerAdapter<ChildItemModel>(private val clickListener: OnChildItemClickListener) :
+        RecyclerView.Adapter<BaseChildRecyclerAdapter<ChildItemModel>.RecyclerHolder>() {
 
     private val arrayList = ArrayList<ChildItemModel>()
     private var itemLayout = 0
     private var parentPosition = 0
 
-    override fun onCreateViewHolder(parent : ViewGroup , viewType : Int) : RecyclerHolder {
-        val binding : ViewDataBinding = DataBindingUtil.inflate(
-            LayoutInflater.from(parent.context) ,
-            getLayoutIdForType() ,
-            parent ,
-            false
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerHolder {
+        val binding: ViewDataBinding = DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context),
+                getLayoutIdForType(),
+                parent,
+                false
         )
         return RecyclerHolder(binding)
     }
 
-    override fun getItemCount() : Int = arrayList.size
+    override fun getItemCount(): Int = arrayList.size
 
-    override fun onBindViewHolder(holder : RecyclerHolder , position : Int) {
+    override fun onBindViewHolder(holder: RecyclerHolder, position: Int) {
         holder.bind(arrayList[position])
     }
 
     /**
      * This is abstract function used to get view type for adapter
      */
-    private fun getLayoutIdForType() : Int {
+    private fun getLayoutIdForType(): Int {
         return itemLayout
     }
 
     /**
      * This is abstract function used to get item click for all the adapter views
      */
-    fun onItemClick(view : View? , adapterPosition : Int) {
+    fun onItemClick(view: View?, adapterPosition: Int) {
         view?.let { viewClicked ->
-            clickListener.onChildItemClicked(Triple(adapterPosition, arrayList[adapterPosition] as Any, viewClicked),parentPosition)
+            clickListener.onChildItemClicked(Triple(adapterPosition, arrayList[adapterPosition] as Any, viewClicked), parentPosition)
         }
     }
 
     /**
      * This is inner class used to set recycler view holder.
      */
-    inner class RecyclerHolder(private val viewDataBinding : ViewDataBinding) :
-        RecyclerView.ViewHolder(viewDataBinding.root) , View.OnClickListener {
+    inner class RecyclerHolder(private val viewDataBinding: ViewDataBinding) :
+            RecyclerView.ViewHolder(viewDataBinding.root), View.OnClickListener {
 
         /**
          * This function is used to bind recycler data particular row wise.
          */
-        fun bind(data : ChildItemModel) {
+        fun bind(data: ChildItemModel) {
             viewDataBinding.apply {
-                setVariable(BR.data , data)
-                setVariable(BR.clickHandler , this@RecyclerHolder)
+                setVariable(BR.data, data)
+                setVariable(BR.clickHandler, this@RecyclerHolder)
                 executePendingBindings()
             }
         }
 
         //On child item click
-        override fun onClick(v : View?) {
-            onItemClick(v , adapterPosition)
+        override fun onClick(v: View?) {
+            onItemClick(v, adapterPosition)
         }
     }
 
@@ -93,7 +93,7 @@ class BaseChildRecyclerAdapter<ChildItemModel> (private val clickListener: OnChi
      * This fun is used to save list
      * @param newList ArrayList<ChildItemModel>
      */
-    fun setList(newList : List<ChildItemModel>) {
+    fun setList(newList: List<ChildItemModel>) {
         arrayList.clear()
         arrayList.addAll(newList)
     }
@@ -101,16 +101,16 @@ class BaseChildRecyclerAdapter<ChildItemModel> (private val clickListener: OnChi
     /**
      * This function used to set layout of child recycler view item
      */
-    fun setItemLayout(item : Int) {
+    fun setItemLayout(item: Int) {
         itemLayout = item
     }
 
-    fun setParentIndex(position : Int) {
+    fun setParentIndex(position: Int) {
         parentPosition = position
     }
 
     interface OnChildItemClickListener {
-        fun onChildItemClicked(triple : Triple<Int , Any , View>, parentIndex: Int)
+        fun onChildItemClicked(triple: Triple<Int, Any, View>, parentIndex: Int)
     }
 }
 
