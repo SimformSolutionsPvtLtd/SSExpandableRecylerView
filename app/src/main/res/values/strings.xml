@@ -6,5 +6,10 @@
     <string name="director_name">Director: %s</string>
     <string name="genre">Genre: %s</string>
     <string name="share_to">"Share To:"</string>
-
+    <string name="movie_released">Movie released in %s</string>
+    <string name="toast_format">%1s Downloading started…</string>
+    <string name="text_movie_title">Movie title</string>
+    <string name="text_director_name">Director name</string>
+    <string name="text_genre">Genre</string>
+    <string name="name">Name</string>
 </resources>
