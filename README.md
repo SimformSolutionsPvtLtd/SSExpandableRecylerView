@@ -5,10 +5,10 @@
 
 ## Features
 
-- Simple and easy to use ( no complex adapter requierd )
+- Simple and easy to use ( no complex adapter required )
 - Just extend BaseRecyclerAdapter and good to go.
 - Get onclick event for parent recycler item as well child item.
-- Customize where you want collpse/expand effect.
+- Customise where you want collapse/expand effect.
 
 # 🎬 Preview
 
