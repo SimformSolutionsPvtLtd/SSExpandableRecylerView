@@ -7,7 +7,7 @@
 
 - Simple and easy to use ( no complex adapter required )
 - Just extend BaseRecyclerAdapter and good to go.
-- Get onClick event for parent recycler item as a well-child item.
+- Get onClick event for parent recycler item as well child item.
 - Customize where you want to collapse/expand effect.
 
 # 🎬 Preview
