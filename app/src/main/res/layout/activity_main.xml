@@ -30,5 +30,36 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/item_parent" />
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_empty_placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_icon_placeholder"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_empty_placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:gravity="center"
+            android:text="@string/no_data_found"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/_17ssp"
+            app:layout_constraintEnd_toEndOf="@id/image_empty_placeholder"
+            app:layout_constraintStart_toStartOf="@id/image_empty_placeholder"
+            app:layout_constraintTop_toBottomOf="@id/image_empty_placeholder" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_empty_placeholder" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

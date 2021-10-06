@@ -25,8 +25,9 @@ import com.expandable.recyclerview.model.ListDataModel
 
 class ListAdapter : BaseRecyclerAdapter<ListDataModel, ChildDataModel>() {
 
-    val liveOnClickData = MutableLiveData<String>()
-    val clickOnShare = MutableLiveData<String>()
+    internal val liveOnClickData = MutableLiveData<String>()
+    internal val clickOnShare = MutableLiveData<String>()
+    internal val isListEmptyLiveData = MutableLiveData<Boolean>()
 
     override fun getLayoutIdForParent(): Int = R.layout.item_parent
 
@@ -52,6 +53,10 @@ class ListAdapter : BaseRecyclerAdapter<ListDataModel, ChildDataModel>() {
                 liveOnClickData.value = triple.third.context.getString(R.string.toast_format, data.movieTitle)
             }
         }
+    }
+
+    override fun isListEmpty(isListEmpty: Boolean) {
+        isListEmptyLiveData.value = isListEmpty
     }
 }
 
