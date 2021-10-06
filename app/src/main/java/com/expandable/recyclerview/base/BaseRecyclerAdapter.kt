@@ -106,7 +106,10 @@ abstract class BaseRecyclerAdapter<ListModel, ChildItemModel>: RecyclerView.Adap
         childArrayList.addAll(childList)
         isExpandedArray.clear()
         isExpandedArray.addAll(Array(arrayList.count()) { false })
+        isListEmpty(arrayList.isEmpty())
     }
+
+    open fun isListEmpty(isListEmpty: Boolean) {}
 
     fun getListItems(): ArrayList<ListModel> = arrayList
 

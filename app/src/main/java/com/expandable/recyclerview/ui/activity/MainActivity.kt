@@ -2,9 +2,12 @@ package com.expandable.recyclerview.ui.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import com.expandable.recyclerview.R
 import com.expandable.recyclerview.base.BaseCompactActivity
 import com.expandable.recyclerview.databinding.ActivityMainBinding
@@ -13,6 +16,7 @@ import com.expandable.recyclerview.model.ListDataModel
 import com.expandable.recyclerview.ui.adapter.ListAdapter
 import com.expandable.recyclerview.util.DIRECTOR_NAME
 import com.expandable.recyclerview.util.GENRE
+import com.expandable.recyclerview.util.LOADING_DELAY
 import com.expandable.recyclerview.util.MOVIE_TITLE
 import com.expandable.recyclerview.util.SIX
 import com.expandable.recyclerview.util.TWENTY
@@ -32,14 +36,24 @@ class MainActivity : BaseCompactActivity<ActivityMainBinding, ActivityMainViewMo
 
     override fun initialize() {
         super.initialize()
-        setDummyData()
         binding.apply {
             listAdapter = ListAdapter()
             listAdapter.apply {
-                setList(list.toList(), childListArray.toList())
                 listRecyclerView.adapter = this
             }
+            progressBar.isVisible = true
+            textEmptyPlaceholder.isVisible = false
+            imageEmptyPlaceholder.isVisible = true
+            listRecyclerView.isVisible = false
         }
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            setDummyData()
+            listAdapter.apply {
+                setList(list.toList(), childListArray.toList())
+                notifyDataSetChanged()
+            }
+        }, LOADING_DELAY)
     }
 
     override fun initializeObserver(viewModel: ActivityMainViewModel) {
@@ -53,6 +67,24 @@ class MainActivity : BaseCompactActivity<ActivityMainBinding, ActivityMainViewMo
                 action = Intent.ACTION_SEND
                 type = "text/plain"
                 startActivity(Intent.createChooser(this, getString(R.string.share_to)))
+            }
+        })
+
+        listAdapter.isListEmptyLiveData.observe(this, { isEmpty ->
+            if (isEmpty) {
+                binding.apply {
+                    progressBar.isVisible = false
+                    textEmptyPlaceholder.isVisible = true
+                    imageEmptyPlaceholder.isVisible = true
+                    listRecyclerView.isVisible = false
+                }
+            } else {
+                binding.apply {
+                    progressBar.isVisible = false
+                    textEmptyPlaceholder.isVisible = false
+                    imageEmptyPlaceholder.isVisible = false
+                    listRecyclerView.isVisible = true
+                }
             }
         })
     }
