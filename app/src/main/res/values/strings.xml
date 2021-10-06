@@ -12,4 +12,5 @@
     <string name="text_director_name">Director name</string>
     <string name="text_genre">Genre</string>
     <string name="name">Name</string>
+    <string name="no_data_found">No data found</string>
 </resources>
